@@ -3,14 +3,18 @@ import profilepic from "../assets/s-removebg-preview.png";
 import { motion } from "framer-motion";
 import { HERO_CONTENT } from "../constants";
 
-const roles = ["AI/ML Developer", "Flutter App Developer", "MERN Stack Developer"];
+const roles = [
+  "AI/ML Developer",
+  "Flutter App Developer",
+  "MERN Stack Developer",
+];
 
 const Hero = () => {
   const [currentRole, setCurrentRole] = useState("");
   const [roleIndex, setRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isTyping, setIsTyping] = useState(true);
-  
+
   useEffect(() => {
     const typingSpeed = 50; // Speed of typing
     const erasingSpeed = 50; // Speed of erasing
@@ -20,7 +24,9 @@ const Hero = () => {
       const currentRoleText = roles[roleIndex];
       if (isTyping) {
         if (currentRole.length < currentRoleText.length) {
-          setCurrentRole((prev) => prev + currentRoleText.charAt(currentRole.length));
+          setCurrentRole(
+            (prev) => prev + currentRoleText.charAt(currentRole.length)
+          );
         } else {
           setIsTyping(false);
           setTimeout(() => setIsDeleting(true), pauseDuration);
@@ -36,9 +42,16 @@ const Hero = () => {
       }
     };
 
-    const interval = setInterval(handleTypingEffect, isTyping ? typingSpeed : erasingSpeed);
+    const interval = setInterval(
+      handleTypingEffect,
+      isTyping ? typingSpeed : erasingSpeed
+    );
     return () => clearInterval(interval);
   }, [currentRole, isTyping, isDeleting, roleIndex]);
+
+  // Find the role with the maximum length to set the container height
+  const maxRoleLength = Math.max(...roles.map((role) => role.length));
+  const maxRoleHeight = `${maxRoleLength * 0.5}rem`; // Adjust this value for proper scaling
 
   return (
     <div className="border-b border-neutral-900 pb-4 lg:mb-35">
@@ -53,19 +66,22 @@ const Hero = () => {
             >
               Soham Soni
             </motion.h1>
-            <motion.span
+            {/* Fixed height container for the role */}
+            <motion.div
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
               className="bg-gradient-to-r from-pink-300 via-slate-500 to-purple-500 bg-clip-text text-3xl tracking-tight text-transparent"
+              style={{ minHeight: maxRoleHeight }} // Reserve space for the roles
             >
               {currentRole}
-            </motion.span>
+            </motion.div>
             <motion.p
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 1 }}
-              className="my-2 max-w-xl py-6 font-light tracking-tighter"
+              className="mt-0 mb-2 max-w-xl py-0 font-light tracking-tighter"
+              style={{ marginTop: "-80px" }} // Added negative margin to move upwards
             >
               {HERO_CONTENT}
             </motion.p>
@@ -76,7 +92,7 @@ const Hero = () => {
             <motion.img
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 1, delay: 1}}
+              transition={{ duration: 1, delay: 1 }}
               src={profilepic}
               alt="profilepic"
               className="h-100 w-100 rounded-full object-cover"
