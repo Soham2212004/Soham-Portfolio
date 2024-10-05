@@ -69,7 +69,8 @@ const Contact = () => {
               transition={{ duration: 1, delay: 0.2 }}
               className="my-2 flex items-center"
             >
-              <FaMapMarkerAlt className="mr-2 text-purple-500" /> {CONTACT.address}
+              <FaMapMarkerAlt className="mr-2 text-purple-500" />{" "}
+              {CONTACT.address}
             </motion.div>
 
             {/* Phone Number with Icon */}
@@ -99,16 +100,15 @@ const Contact = () => {
 
         {/* Right Side - Profile Picture */}
         <div className="mt-8 md:mt-0 md:w-1/3 flex justify-center">
-  <motion.img
-    initial={{ opacity: 0, scale: 0.8 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 1 }}
-    src={profile} // Update with the correct path
-    alt="Soham Soni"
-    className="w-80 h-80 rounded-full object-cover" // Very large size
-  />
-</div>
-
+          <motion.img
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            src={profile} // Update with the correct path
+            alt="Soham Soni"
+            className="w-80 h-80 rounded-full object-cover" // Very large size
+          />
+        </div>
       </div>
 
       {/* Download CV Button */}
@@ -118,7 +118,8 @@ const Contact = () => {
         variants={emailVariants}
         transition={{ duration: 1, delay: 0.8 }}
         href="https://drive.google.com/uc?export=download&id=1E25k_KbCWIvB77GeVtR31TNhnTzvfNxO"
-        className="mt-8 inline-block rounded-full bg-purple-500 px-8 py-2 text-white hover:bg-purple-700 mx-auto"
+        className="mt-0 inline-block rounded-full bg-purple-500 px-8 py-2 text-white hover:bg-purple-700 mx-auto"
+        style={{ marginTop: "-80px" }}
       >
         Download CV
       </motion.a>
