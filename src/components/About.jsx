@@ -40,10 +40,11 @@ const About = () => {
           whileInView={{ opacity: 1, x: 0 }}
           initial={{ opacity: 0, x: -100 }}
           transition={{ duration: 0.5 }}
-          className="w-full lg:w-1/2 lg:p-8"
+          className="w-full lg:w-2/3 xl:w-1/2 lg:p-8"
         >
           <div className="flex items-center justify-center">
-            <img className="rounded-2xl" src={aboutImg} alt="about" />
+            {/* Increase height and width of the image */}
+            <img className="rounded-2xl h-100 w-1/2 object-cover" src={aboutImg} alt="about" />
           </div>
         </motion.div>
 
