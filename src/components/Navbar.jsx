@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../assets/soham.png";
+import Logo from "../assets/soham2.png";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa6";
